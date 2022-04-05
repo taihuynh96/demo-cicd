@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 services:
   adminer:
@@ -6,4 +6,4 @@ services:
     container_name: web
     restart: always
     ports:
-      - "80:80"
+      - "80:8080"
