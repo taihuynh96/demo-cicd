@@ -5,8 +5,7 @@ phases:
       - echo "1. pre build step"
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.${AWS_REGION}.amazonaws.com
   
-    on-failure:
-      - echo "You may not provide AWS_REGION and ACCOUNT_ID in Environment variable. Please check again"
+    on-failure: ABORT
   build:
     commands:
       - echo "2. Build step"
@@ -16,8 +15,7 @@ phases:
       - echo 3. "Post build"
       - docker tag custom-nginx:latest $REPO_URI:latest
       - docker push $REPO_URI:latest
-    on-failure:
-      - echo "You may not provide REPO_URI in Environment variable. Please check again"
+    on-failure: ABORT
 
 artifacts:
   files:
